@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 
 export const Post = () => {
+	const [info, setInfo] = useState('')
 
 	useEffect(() => {
 		fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -16,12 +17,17 @@ export const Post = () => {
 			},
 		})
 			.then((response) => response.json())
-			.then((json) => console.log('POST', json));
+			.then((json) => {
+				console.log('POST', json);
+				setInfo(json);
+			});
 	}, [])
 
 	return (
 		<>
 			<h1> POST </h1>
+			<p>{JSON.stringify(info)}</p>
+
 		</>
 	)
 }
